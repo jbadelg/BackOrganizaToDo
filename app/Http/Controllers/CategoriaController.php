@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Http\Requests\StoreCategoriaRequest;
 use App\Http\Requests\UpdateCategoriaRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
@@ -15,7 +16,7 @@ class CategoriaController extends Controller
     {
         //
         $categorias = Categoria::all();
-        return response()->json($categorias); 
+        return response()->json($categorias);
     }
 
     /**
@@ -40,8 +41,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        $cat = Categoria::find($categoria);
-        return response()->json($cat);
+        return response()->json($categoria);
     }
 
     /**
