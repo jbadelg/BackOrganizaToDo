@@ -22,7 +22,9 @@ class StoreCategoriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:100'],
+            'color' => ['required', 'string', 'max:10'],
+            'user_id' => ['required', 'integer', 'exists:users,id']
         ];
     }
 }

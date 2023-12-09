@@ -21,13 +21,13 @@ use App\Http\Controllers\CategoriaController;
 // });
 
 Route::middleware(['auth:sanctum'])->group(function(){
-    Route::get('/user',function(Request $request){
+    Route::get('/user', function(Request $request){
         return $request->user();
     });
 
-    // Route::resource('categorias', CategoriaControlle::class);
+    Route::apiResource('categorias', CategoriaController::class);
 });
-Route::apiResource('categorias', CategoriaController::class);
+// Route::apiResource('categorias', CategoriaController::class);
 
 // Route::resource('users', UserController::class);
 // Route::resource('tareas', TareaController::class);
