@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Http\Requests\StoreCategoriaRequest;
 use App\Http\Requests\UpdateCategoriaRequest;
 use App\Http\Resources\CategoriaResource;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
@@ -19,14 +20,6 @@ class CategoriaController extends Controller
         // return response()->json($categorias);
         $categorias = Categoria::with(['usuario'])->paginate(10);
         return CategoriaResource::collection($categorias);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -50,10 +43,15 @@ class CategoriaController extends Controller
     // }
     public function show(string $id)
     {
-        $categoria = Categoria::with(['usuario'])->findOrFail($id);
-        //tambien se puede usar:
-        //$categoria = Categoria::with(['usuario'])->where('id', $id)->first();
-        return new CategoriaResource($categoria);
+        try{
+            $categoria = Categoria::with(['usuario'])->findOrFail($id);
+            //tambien se puede usar:
+            //$categoria = Categoria::with(['usuario'])->where('id', $id)->first();
+            return new CategoriaResource($categoria);
+        }catch(ModelNotFoundException $e){
+            return response()->json(['error' => 'Categoría no encontrada'],404);
+        }
+
     }
 
     /**

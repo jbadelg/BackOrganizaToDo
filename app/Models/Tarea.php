@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tarea extends Model
 {
     protected $fillable = [
-        'nombre', 
+        'nombre',
         'user_id',
         'tipoTarea',
         'descripcion',
@@ -20,12 +20,12 @@ class Tarea extends Model
         'valor',
         'recurrente',
         'periodicidadRecurrencia',
-        'subtarea_id', 
+        'subtarea_id',
         'amigo_id'
     ];
     use HasFactory;
 
-    public function user()
+    public function usuario()
     {
         return $this->belongsTo(User::class);
     }

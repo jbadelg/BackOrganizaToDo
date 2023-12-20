@@ -11,7 +11,7 @@ class StoreTareaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,20 @@ class StoreTareaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'regex:/^[A-Za-z0-9 .,!?-]*$/', 'max:100'],
+            'estadoTarea' => ['required', 'string', 'max:20'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'categoria_id' => ['required', 'integer', 'exists:categorias,id'],
+            'tipoTarea' => ['nullable', 'string','max:20'],
+            'descripcion' => ['nullable', 'string', 'regex:/^[A-Za-z0-9 .,!?-]*$/','max:500'],
+            'fechaInicio' => ['nullable', 'date'],
+            'fechaVencimiento' => ['nullable', 'date','after_or_equal:fechaInicio'],
+            'duracion' => ['nullable', 'date'],
+            'valor' => ['nullable', 'numeric'],
+            'recurrente' => ['nullable', 'boolean','default:false'],
+            'periodicidadRecurrencia' => ['nullable', 'string'],
+            'subtarea_id' => ['nullable', 'integer'],
+            'amigo_id' => ['nullable', 'integer'],
         ];
     }
 }

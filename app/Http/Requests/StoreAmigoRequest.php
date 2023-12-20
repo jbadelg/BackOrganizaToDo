@@ -11,7 +11,7 @@ class StoreAmigoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreAmigoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'email', 'max:255'],
+            'user_id' => ['required', 'integer', 'exists:users,id']
         ];
     }
 }
