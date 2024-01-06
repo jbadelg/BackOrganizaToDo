@@ -98,4 +98,10 @@ class CategoriaController extends Controller
         Categoria::findOrFail($id)->delete();
         return response()->json(['message' => 'Categoría eliminada correctamente']);
     }
+
+    public function obtenerTareas(string $id)
+    {
+            $out = Categoria::with('tareas')->find($id)->tareas;
+            return response()->json($out);
+    }
 }

@@ -36,6 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('users/categorias/{id}', [UserController::class, 'getUserCategorias']);
     Route::get('users/amigos/{id}', [UserController::class, 'getUserAmigos']);
     Route::get('users/tareas/{id}', [UserController::class, 'getUserTareas']);
+    Route::get('/categorias/tareas/{id}', [CategoriaController::class, 'obtenerTareas']);
 });
 
 // Route::resource('users', UserController::class);

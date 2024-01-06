@@ -20,6 +20,9 @@ class TareaResource extends JsonResource
             'tarea_estadoTarea' => $this->estadoTarea,
             'tarea_user_id' => $this->user_id,
             'tarea_categoria_id' => $this->categoria_id,
+            'tarea_categoria' => $this->whenLoaded('categoria', function(){
+                return new CategoriaResource(($this->categoria));
+            }),
             'tarea_tipoTarea' => $this->tipoTarea,
             'tarea_descripcion' => $this->descripcion,
             'tarea_fechaInicio' => $this->fechaInicio,

@@ -36,7 +36,8 @@ class TareaController extends Controller
     {
         try{
             $tarea = Tarea::with(['usuario'])->findOrFail($id);
-            return new TareaResource($tarea);
+            // return new TareaResource($tarea);
+            return ($tarea);
         }catch(ModelNotFoundException $ex){
             return response()->json(['error' => 'Tarea no encontrada'],404);
         }
