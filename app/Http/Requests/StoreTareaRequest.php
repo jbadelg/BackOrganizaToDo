@@ -22,17 +22,17 @@ class StoreTareaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string', 'regex:/^[A-Za-z0-9 .,!?-]*$/', 'max:100'],
+            'nombre' => ['required', 'string', 'regex:/^[A-Za-z0-9 áéíóúÁÉÍÓÚüÜñÑ!.,*?@-]*$/', 'max:100'],
             'estadoTarea' => ['required', 'string', 'max:20'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
             'categoria_id' => ['required', 'integer', 'exists:categorias,id'],
             'tipoTarea' => ['nullable', 'string','max:20'],
-            'descripcion' => ['nullable', 'string', 'regex:/^[A-Za-z0-9 .,!?-]*$/','max:500'],
+            'descripcion' => ['nullable', 'string', 'regex:/^[A-Za-z0-9 áéíóúÁÉÍÓÚüÜñÑ!.,*?@-]*$/','max:500'],
             'fechaInicio' => ['nullable', 'date'],
             'fechaVencimiento' => ['nullable', 'date','after_or_equal:fechaInicio'],
             'duracion' => ['nullable', 'date'],
             'valor' => ['nullable', 'numeric'],
-            'recurrente' => ['nullable', 'boolean','default:false'],
+            'recurrente' => ['nullable', 'boolean'],
             'periodicidadRecurrencia' => ['nullable', 'string'],
             'subtarea_id' => ['nullable', 'integer'],
             'amigo_id' => ['nullable', 'integer'],

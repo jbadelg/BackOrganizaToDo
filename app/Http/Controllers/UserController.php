@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoriaResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class UserController extends Controller
         if ($categorias->isEmpty()) {
             return response()->json(['message' => 'El usuario no tiene categorías'], 200);
         }
-        return response()->json($categorias);
+        // return response()->json($categorias);
+        return CategoriaResource::collection($categorias);
     }
 
     public function getUserAmigos($id){

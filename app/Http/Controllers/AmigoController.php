@@ -16,6 +16,7 @@ class AmigoController extends Controller
     public function index()
     {
         $amigos = Amigo::with(['usuario'])->paginate(10);
+        $amigos = Amigo::with(['usuario']);
         return AmigoResource::collection($amigos);
     }
 
