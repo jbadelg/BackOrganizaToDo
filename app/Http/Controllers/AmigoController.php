@@ -44,8 +44,10 @@ class AmigoController extends Controller
     public function show(string $id)
     {
         try{
-            $amigo = Amigo::with(['usuario'])->findOrFail($id);
-            return new AmigoResource($amigo);
+            $amigo = Amigo::findOrFail($id);
+            // $amigo = Amigo::with(['usuario'])->findOrFail($id);
+            // return new AmigoResource($amigo);
+            return ($amigo);
         }catch (ModelNotFoundException $ex){
             return response()->json(['error' => 'Amigo no encontrado'],404);
         }
